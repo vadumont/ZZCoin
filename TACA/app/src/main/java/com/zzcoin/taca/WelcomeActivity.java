@@ -20,7 +20,16 @@ public class WelcomeActivity extends AppCompatActivity {
         questionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WelcomeActivity.this,MessengerActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this,ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button contactButton = (Button) findViewById(R.id.ContactButton);
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeActivity.this,ContactUs.class);
                 startActivity(intent);
             }
         });
