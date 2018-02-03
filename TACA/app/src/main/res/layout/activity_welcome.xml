@@ -12,14 +12,14 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="35dp"
         app:srcCompat="@drawable/ca" />
 
     <Button
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="170dp"
         android:text="Poser une question"
         android:id="@+id/QuestionButton"
         />
@@ -27,7 +27,7 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="240dp"
         android:layout_centerHorizontal="true"
         android:text="Questions Rapides / Catégories"
         android:id="@+id/CategoriesButton"
@@ -36,27 +36,27 @@
     <Button
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="310dp"
         android:layout_centerHorizontal="true"
         android:text="Contactez-moi"
         android:id="@+id/ContactButton"
         />
 
     <TextView
-        android:layout_width="240dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="120dp"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="480dp"
+        android:layout_centerHorizontal="true"
         android:background="@color/colorDoYouKnow"
         android:id="@+id/textView" />
 
     <ImageView
         android:id="@+id/doYouKnowImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/textView"
-        android:layout_marginStart="26dp"
-        app:srcCompat="@drawable/saviezvous" />
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="420dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/saviezvous"
+        />
 
 </RelativeLayout>
