@@ -38,7 +38,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="310dp"
         android:layout_centerHorizontal="true"
-        android:text="Contactez-moi"
+        android:text="Contactez-nous"
         android:id="@+id/ContactButton"
         />
 

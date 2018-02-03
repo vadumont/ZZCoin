@@ -25,6 +25,15 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
+        Button contactButton = (Button) findViewById(R.id.ContactButton);
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeActivity.this,ContactUs.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
