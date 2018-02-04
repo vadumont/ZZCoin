@@ -48,7 +48,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/colorDoYouKnow"
-        android:text="Le Crédit Agricole a organisé un Hackaton à ISIMA et c'est l'équipe ZZCoin qui a gagné !"
+        android:text="Le Crédit Agricole a organisé un Hackaton à ISIMA et c'est l'équipe ZZCoin qui a développé cette appli !"
         android:textAlignment="center"
         android:textSize="9pt"
         android:textStyle="bold"
