@@ -1,10 +1,14 @@
 package com.zzcoin.taca;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -40,32 +44,6 @@ public class ContactUs extends AppCompatActivity {
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText nameText = (EditText) findViewById(R.id.nameText);
 
-        nameText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(nameText.getText().toString()=="Votre nom et prenom ...") {
-                    nameText.setText("");
-                }
-            }
-        });
-
-        mailText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(mailText.getText().toString()=="Votre e-mail ..."){
-                    mailText.setText("");
-                }
-            }
-        });
-
-        phoneText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    phoneText.setText("");
-
-            }
-        });
-
         Button submitButton = (Button) findViewById(R.id.SubmitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +55,30 @@ public class ContactUs extends AppCompatActivity {
                 String[] tokens = name.split(delims);
                 name = tokens[0].toString();
                 String surname = tokens[1].toString();
+
+                if(name.matches("") || phone.matches("") || mail.matches("") || surname.matches("")){
+                    AlertDialog emptyDialog = new AlertDialog.Builder(ContactUs.this).create();
+                    emptyDialog.setTitle("Erreur");
+                    emptyDialog.setMessage("Merci de remplir l'ensemble des champs.");
+                }
+
+
+               /* if(!accepterEmail(mail,mailText)){
+                    final AlertDialog errorMail = new AlertDialog.Builder(ContactUs.this).create();
+                    errorMail.setTitle("Erreur dans le mail !");
+                    errorMail.setMessage("Erreur dans le format du mail. Merci de le modifier.");
+                    errorMail.setButton(AlertDialog.BUTTON_NEUTRAL, "ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    errorMail.dismiss();
+                                    mailText.requestFocus();
+                                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    imm.showSoftInput(mailText,InputMethodManager.SHOW_IMPLICIT);
+                                }
+                            });
+                    errorMail.show();
+                }*/
 
                 String url = "http://www.lifehand-technology.fr/interface_mail.php?mail=" + mail +"&name=" + name + "&surname=" + surname + "&phone=" + phone;
 
@@ -96,9 +98,66 @@ public class ContactUs extends AppCompatActivity {
                 });
                 queue.add(stringRequest);
 
+                AlertDialog alertDialog = new AlertDialog.Builder(ContactUs.this).create();
+                alertDialog.setTitle("Envoyé !");
+                alertDialog.setMessage("Votre demande de contact a bien été effectuée !");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                Intent intent = new Intent(ContactUs.this,WelcomeActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                alertDialog.show();
             }
         });
 
+    }
 
+    public boolean accepterEmail(String mail, final EditText mailEdit) {
+        boolean ok = false;
+        String message = "", tex = mail.toString().trim();
+        int posiArrobase = 0, posiPoint = 0, posi2 = 0;
+
+        if (tex.indexOf(" ") > -1) {                          // signaler l'espace
+            message = " il y a un blanc dans l''adresse email ";
+        }
+        if (message.length() == 0) {
+            posiArrobase = tex.indexOf("@");
+            if (posiArrobase < 0) {
+                message = " arrobase (@) manque dans l'adresse email ";
+            }
+            if ((posiArrobase == 0) || (tex.endsWith("@"))) {
+                message = " arrobase (@) mal placé dans l'adresse email ";
+            }
+            if ((posiArrobase > 0) && (posiArrobase < tex.length())) {
+                posi2 = tex.indexOf("@",posiArrobase+1);
+                if (posi2 > posiArrobase) {
+                    message = " double arrobase (@) dans l'adresse email ";
+                }
+            }
+            if (message.length() == 0) {
+                posiPoint = tex.indexOf(".");
+                if (posiPoint == -1) {
+                    message = " on doit trouver au moins un point dans l'adresse email ";
+                }
+                if ((posiPoint == 0) || (tex.endsWith(".")))  {
+                    message = " point mal placé dans l'adresse email ";
+                }
+            }
+            if (message.length() == 0) {
+                if (tex.length() == 0) {
+                    message = " l'adresse email est vide ";
+                }
+            }
+        }
+        if (message.length() == 0) {
+            ok = true;
+        }
+        else {
+        }
+        return(ok);
     }
 }

@@ -72,7 +72,7 @@
         android:layout_marginTop="370dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:hint="Votre telphone ..."
+        android:hint="Votre telephone ..."
         android:background="@color/colorDoYouKnow"
         android:id="@+id/phoneText"
         />
