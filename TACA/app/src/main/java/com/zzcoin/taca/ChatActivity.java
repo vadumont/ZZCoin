@@ -1,6 +1,8 @@
 package com.zzcoin.taca;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,11 +25,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
+    Context mycontext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        mycontext=getApplicationContext();
 
         //Adding toolbar to the activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -114,7 +119,7 @@ public class ChatActivity extends AppCompatActivity {
         return message;
     }
 
-    private void createMessage(String message) {
+    public void createMessage(String message) {
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
         LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.messageuser, null, false);
         TextView tv = (TextView)layout.findViewById(R.id.contentUserMessage);
@@ -123,10 +128,8 @@ public class ChatActivity extends AppCompatActivity {
         LinearLayout linear = (LinearLayout)findViewById(R.id.messagehall);
         linear.addView(layout);
 
-        String answer = sendAnswer(message);
+        sendAnswer(message,this,linear);
 
-        LinearLayout ansLayout = createAnswer(answer);
-        linear.addView(ansLayout);
     }
 
     public void sendMessage(View v){
@@ -149,8 +152,8 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
-    private LinearLayout createAnswer(String answer){
-        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+    public void createAnswer(String answer,LinearLayout linear,Context context){
+        LayoutInflater inflater = LayoutInflater.from(context);
         LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.messagemark, null, false);
 
         LinearLayout messageLayout = (LinearLayout)layout.findViewById(R.id.contentMessage);
@@ -167,13 +170,15 @@ public class ChatActivity extends AppCompatActivity {
             });
         }
         tw.setText(answer);
-
-        return layout;
+        linear.addView(layout);
     }
 
-    private String sendAnswer(String message){
-        // To be implemented
-        return "To be implemented";
+    private void sendAnswer(String message,Context context,LinearLayout linear){
+        try {
+            wordRecognition.Highlight(message,getApplicationContext(),linear);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean isEmptyString(String text) {
