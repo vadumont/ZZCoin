@@ -4,8 +4,11 @@
 import numpy as np
 import random
 import matplotlib.pyplot as plt
-
+import sys
 import cv2
+
+
+
 def creerMatricePoids(nbrParCouche):
 	
 	W = [] #liste contenant toutes les matrices des poids
@@ -195,7 +198,7 @@ def getTestSet():
 	return(test_set)
 	
 def stochasticGradientDescent(nbrParCouche):
-	eta = 2
+	eta = 1
 
 	train_set = getTrainSet()
 	test_set = getTrainSet()
@@ -207,7 +210,7 @@ def stochasticGradientDescent(nbrParCouche):
 
 	erreur = []
 
-	for k in range(1000): # 30 epochs
+	for k in range(10000): # 30 epochs
 		print("Epoch {} : ".format(k),end="")
 
 		for j in range(len(train_set)): # on entraine
@@ -233,8 +236,10 @@ def stochasticGradientDescent(nbrParCouche):
 		print("{} / {}".format(count,len(test_set)))
 
 	A,Z = forward((np.array([116,45,134,63,0, 0, 0, 0])/144).reshape(8,1),W,B)
-	np.savetxt("weight1.txt",W[0])
-	np.savetxt("bias1.txt",B[0])
+	np.save("weight1.npy",W[0])
+	np.save("weight2.npy",W[1])
+	np.save("bias1.npy",B[0])
+	np.save("bias2.npy",B[1])
 	print(vectorToNumber(A[-1]))
 	print(A[-1])
 
@@ -261,6 +266,13 @@ def numberToVector(x):
 	
 	return(y)
 
+def getNumber(name):
+	global listeWord
+	
+	for i in range(len(listeWord)):
+		if(listeWord[i][0] == name):
+			return(listeWord[i][1])
+
 def resize(img):
 	ratio = 40.0 / img.shape[1]
 	dim = (40, int(img.shape[0] * ratio))
@@ -280,11 +292,36 @@ def fonctionSigmoidPrim(x):
 def deriveePartielle(A,Y):
 	return(A-Y)
 
+def getResponse():
+	vector = []
+	W = []
+	B = []
+	W.append(np.load("weight1.npy"))
+	W.append(np.load("weight2.npy"))
+	B.append(np.load("bias1.npy"))
+	B.append(np.load("bias2.npy"))
 
+	for arg in sys.argv:
+		number = getNumber(arg)
+		if(number != None):
+			vector.append(number)
+	
+	for i in range(8 - len(vector)):
+		vector.append(0)
+
+	vector = (np.array(vector)/144).reshape(8,1)
+	#print(vector)
+	A,Z = forward(vector,W,B)
+	#print(A[-1])
+	print(vectorToNumber(A[-1]))
 
 #####################################################################################
+listeWord = [('PEL', 1), ('PTZ', 2), ('TEG', 3), ('Tiers', 4), ('Tous_risques', 5), ('achat', 6), ('achats', 7), ('achete', 8), ('acheter', 9), ('acquerir', 10), ('adherer', 11), ('aide', 12), ('annuler', 13), ('apport', 14), ('argent', 15), ('article', 16), ('assistance', 17), ('assurance', 18), ('assurer', 19), ('auto', 20), ('autorisation', 21), ('avantages', 22), ('avoir', 23), ('bancaire', 24), ('banque', 25), ('beneficier', 26), ('bleue', 27), ('bon', 28), ('carte', 29), ('choisir', 30), ('code', 31), ('combien', 32), ('commencer', 33), ('comment', 34), ('commercant', 35), ('complementaire', 36), ('compte', 37), ('conducteur', 38), ('confidentiel', 39), ('connaitre', 40), ('conseil', 41), ('consulter', 42), ('contrat', 43), ('coute', 44), ('credit', 45), ('debit', 46), ('debiter', 47), ('declarer', 48), ('demarche', 49), ('depense', 50), ('differe', 51), ('donnees', 52), ('effectuer', 53), ('endettement', 54), ('epargne', 55), ('epargner', 56), ('erreur', 57), ('especes', 58), ('etranger', 59), ('euro', 60), ('faire', 61), ('fais', 62), ('fixe', 63), ('fois', 64), ('fonctionne', 65), ('gamme', 66), ('garantie', 67), ('haut', 68), ('hors', 69), ('immediat', 70), ('information', 71), ('infos', 72), ('interets', 73), ('internet', 74), ('joint', 75), ('ligne', 76), ('liquide', 77), ('lire', 78), ('livret', 79), ('luxe', 80), ('marche', 81), ('moyen', 82), ('negation', 83), ('net', 84), ('nouveau', 85), ('obtenir', 86), ('offre', 87), ('opposition', 88), ('opter', 89), ('où', 90), ('paiement', 91), ('passe', 92), ('payer', 93), ('perp', 94), ('personnel', 95), ('personnelle', 96), ('perte', 97), ('placement', 98), ('plafond', 99), ('plusieurs', 100), ('portable', 101), ('posseder', 102), ('possibilite', 103), ('possible', 104), ('pourquoi', 105), ('pouvoir', 106), ('pret', 107), ('prix', 108), ('probleme', 109), ('profiter', 110), ('proteger', 111), ('quand', 112), ('que', 113), ('quel', 114), ('quels', 115), ('quoi', 116), ('qu’est-ce', 117), ('reagir', 118), ('regler', 119), ('retirer', 120), ('retourner', 121), ('retrait', 122), ('sante', 123), ('securiser', 124), ('securisée', 125), ('servir', 126), ('sinistre', 127), ('souscrire', 128), ('suivre', 129), ('surement', 130), ('systematique', 131), ('tarification', 132), ('tarifs', 133), ('taux', 134), ('telephone', 135), ('utilisation', 136), ('utiliser', 137), ('vehicule', 138), ('vie', 139), ('virement', 140), ('vol', 141), ('vouloir', 142), ('zero', 143), ('zone', 144)]
+getResponse()
+
 nbrParCouche = [8,50,42]
-stochasticGradientDescent(nbrParCouche)
+
+#stochasticGradientDescent(nbrParCouche)
 
 
 
