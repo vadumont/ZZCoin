@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TACA</string>
+    <string name="welcomeBot">Bonjour, comment puis-je vous aidez ?</string>
 </resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:gravity="right">
+
+<TextView
+    android:id="@+id/contentUserMessage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="4dp"
+    android:background="@drawable/rounded_corner2"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:maxWidth="250dp"
+    android:text="Salut"
+    android:textColor="#ffffff"
+    android:textSize="17dp" />
+
+</LinearLayout>
