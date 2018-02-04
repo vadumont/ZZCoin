@@ -40,6 +40,32 @@ public class ContactUs extends AppCompatActivity {
         final EditText phoneText = (EditText) findViewById(R.id.phoneText);
         final EditText nameText = (EditText) findViewById(R.id.nameText);
 
+        nameText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(nameText.getText().toString()=="Votre nom et prenom ...") {
+                    nameText.setText("");
+                }
+            }
+        });
+
+        mailText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mailText.getText().toString()=="Votre e-mail ..."){
+                    mailText.setText("");
+                }
+            }
+        });
+
+        phoneText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    phoneText.setText("");
+
+            }
+        });
+
         Button submitButton = (Button) findViewById(R.id.SubmitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,27 +79,6 @@ public class ContactUs extends AppCompatActivity {
                 String surname = tokens[1].toString();
 
                 String url = "http://www.lifehand-technology.fr/interface_mail.php?mail=" + mail +"&name=" + name + "&surname=" + surname + "&phone=" + phone;
-
-               /* try{
-                    URI uri = new URI(url);
-                    HttpGet getHttpRe = new HttpGet();
-                    getHttpRe.setURI(uri);
-                    DefaultHttpClient httpClient = new DefaultHttpClient();
-                    HttpResponse httpResponse = httpClient.execute(getHttpRe);
-                    Toast.makeText(getApplicationContext(), httpResponse.toString(), Toast.LENGTH_LONG);
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                } catch (ClientProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
-
-              /*  try {
-                    getRequete(url);
-                } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG);
-                }*/
 
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
@@ -94,27 +99,6 @@ public class ContactUs extends AppCompatActivity {
             }
         });
 
-
-    }
-
-    public void getRequete(String url) throws IOException {
-        InputStream is = null;
-        try {
-            final HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-            conn.setReadTimeout(10000);
-            conn.setConnectTimeout(15000);
-            conn.setRequestMethod("GET");
-            conn.setDoInput(true);
-
-            conn.connect();
-            is = conn.getInputStream();
-
-        }
-        finally {
-            if(is != null) {
-                is.close();
-            }
-        }
 
     }
 }

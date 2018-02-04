@@ -48,7 +48,10 @@
         android:layout_marginTop="480dp"
         android:layout_centerHorizontal="true"
         android:background="@color/colorDoYouKnow"
-        android:id="@+id/textView" />
+        android:text="Ceci est un tip !"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:id="@+id/doYouKnowTextView" />
 
     <ImageView
         android:id="@+id/doYouKnowImage"
