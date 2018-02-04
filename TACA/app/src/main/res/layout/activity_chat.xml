@@ -15,146 +15,26 @@
         android:baselineAligned="false"
         android:layout_marginBottom="50dp">
         <ScrollView
+            android:id="@+id/scrollbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/messagehall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <!--Message Bot-->
+                <include layout="@layout/messagebot"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rounded_corner"
-                    android:maxWidth="250dp"
-                    android:paddingLeft="23dp"
-                    android:paddingRight="23dp"
-                    android:text="Salut salut salutsalutsalut fjhbkdfhdfkjfkdhgfdjkgfhdgjkfdghfdkjgfdhgfdjkgkfdhgkjfdghfgjkghdfgkfdhgdfjkgfdhgkdfjghfdgjkfdhgfdjkgdfhjgfhgdfkjgjdfkblablablablablabalbbblalbalbalblablbalalalalalalalalalalalalal"
-                    android:textColor="#ffffff"
-                    android:textSize="17dp" />
+                <!--Message User
+                <include layout="@layout/messageuser"/>
 
-            </LinearLayout>
+                <include layout="@layout/messagemark" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/rounded_corner2"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="Salut"
-                    android:textColor="#ffffff"
-                    android:textSize="17dp" />
 
-            </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginRight="6dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/rounded_corner"
-                        android:maxWidth="250dp"
-                        android:paddingLeft="23dp"
-                        android:paddingRight="23dp"
-                        android:text="Salut salut salutsalutsalut fjhbkdfhdfkjfkdhgfdjkgfhdgjkfdghfdkjgfdhgfdjkgkfdhgkjfdghfgjkghdfgkfdhgdfjkgfdhgkdfjghfdgjkfdhgfdjkgdfhjgfhgdfkjgjdfkblablablablablabalbbblalbalbalblablbalalalalalalalalalalalalal"
-                        android:textColor="#ffffff"
-                        android:textSize="17dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginRight="6dp"
-                        android:layout_marginTop="4dp"
-                        android:background="@drawable/rounded_corner2"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="Salut"
-                        android:textColor="#ffffff"
-                        android:textSize="17dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginRight="6dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/rounded_corner"
-                        android:maxWidth="250dp"
-                        android:paddingLeft="23dp"
-                        android:paddingRight="23dp"
-                        android:text="Salut salut salutsalutsalut fjhbkdfhdfkjfkdhgfdjkgfhdgjkfdghfdkjgfdhgfdjkgkfdhgkjfdghfgjkghdfgkfdhgdfjkgfdhgkdfjghfdgjkfdhgfdjkgdfhjgfhgdfkjgjdfkblablablablablabalbbblalbalbalblablbalalalalalalalalalalalalal"
-                        android:textColor="#ffffff"
-                        android:textSize="17dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginRight="6dp"
-                        android:layout_marginTop="4dp"
-                        android:background="@drawable/rounded_corner2"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:text="Salut"
-                        android:textColor="#ffffff"
-                        android:textSize="17dp" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <!-- stars -->
-
-                    <!-- end stars -->
-                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
@@ -169,6 +49,7 @@
         android:background="#AAAAAA">
 
         <EditText
+            android:id="@+id/messagebox"
             android:layout_width="295dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
@@ -184,7 +65,8 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:background="#AAAAAA"
-            android:src="@drawable/fleche"/>
+            android:src="@drawable/fleche"
+            android:onClick="sendMessage"/>
     </LinearLayout>
 
 
