@@ -95,40 +95,35 @@ public class wordRecognition {
 	}
 	
 	
-	public static Vector<Vector<String>> Highlight(String text) {
+	public static Vector<String> Highlight(String text) {
 		int i=0;
 		int c=0;
 		String textChain="";
 		//System.out.println("hello");
-		Vector<String> list1 = new Vector<String>();
-		Vector<String> list2 = new Vector<String>();
-		Vector<String> list3 = new Vector<String>();
-		Vector<String> list4 = new Vector<String>();
-		Vector<String> list5 = new Vector<String>();
-		Vector<Vector<String>> Keywords = new Vector<Vector<String>>() {{ add(list1);add(list2);add(list3);add(list4);add(list5);}};
+		Vector<String> list = new Vector<String>();
 		StringTokenizer phrase = new StringTokenizer(text,".");
 	    while (phrase.hasMoreTokens()) {
 	    	 StringTokenizer phrase2 = new StringTokenizer(phrase.nextToken(),"?");
-	         while (phrase2.hasMoreTokens() && c < 6) {
-	        	 Vector<String> currentList = Keywords.get(c++);
+	         while (phrase2.hasMoreTokens()) {
+	        	 
 	        	 StringTokenizer mot = new StringTokenizer(phrase2.nextToken());
 	        	 while(mot.hasMoreTokens()) {
-	        		 checkWord(mot.nextToken(),currentList);
+	        		 checkWord(mot.nextToken(),list);
 	        	 }
 	        	 System.out.println("Phrase"+i++);
 	        	 textChain="";
-	        	 for (String item : currentList) {
+	        	 for (String item : list) {
 	        		 
 	        		 textChain=textChain+item+" ";
 	        		 
 	         	 }
 	        	 System.out.println(textChain);
-	        	 String[] textRetour = {"cmd.exe", "D:\\cyprien\\ZZCoin\\Python\\RdN.py", textChain};
+	        	 String[] textRetour = {"python", "D:\\cyprien\\ZZCoin\\Python\\RdN.py", textChain};
 
 				try {
 					final Process p = Runtime.getRuntime().exec(textRetour);
 
-					try(BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+					try(BufferedReader br = new BufferedReader(new FileReader("D:\\cyprien\\ZZCoin\\Python\\resultat.txt"))) {
 					    StringBuilder sb = new StringBuilder();
 					    String line = br.readLine();
 
@@ -150,17 +145,17 @@ public class wordRecognition {
 	        	 
 		     }
 	    }
-	    return Keywords;
+	    return list;
 	}
 	
 	
 	public static void main(String[] args) { //juste une function apres
 		//StringTokenizer phrase = new StringTokenizer("J'ai perdu ma carte à l'etranger. Y a t il une demarche particuliere pour ce probleme ? Comment ouvrir un Livret Épargne Orange ?",".");
 	   
-	    Highlight("comment faire opposition a ma carte bancaire ?" + 
-	    		"comment securiser mes achats sur internet ? "+ 
-	    		"comment assurer un nouveau vehicule ?" + 
-	    		"c'est quoi un apport personnel ?" );
+	    Highlight("comment assurer un nouveau vehicule ?");  
+	    		/*" "+ 
+	    		"" + 
+	    		"c'est quoi un apport personnel ?" */
 	    		
 	}
 }
