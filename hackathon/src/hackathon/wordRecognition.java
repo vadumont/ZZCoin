@@ -9,8 +9,9 @@ import java.util.Vector;
 
 public class wordRecognition {
 
-	 private static String[] array = { "PEL", "PTZ", "qu’est-ce", "TEG", "tiers", "tous","risques", "achat", "achats", "achete", "acheter", "acquerir", "adherer", "aide", "annuler", "apport", "argent", "article", "assistance", "assurance", "assurer", "auto", "autorisation", "avantages", "avoir", "bancaire", "banque", "beneficier", "bleue", "bon", "carte", "choisir", "code", "combien", "commencer", "comment", "commercant", "complementaire", "compte", "conducteur", "confidentiel", "connaitre", "conseil", "consulter", "contrat", "coute", "credit", "debit", "debiter", "declarer", "demarche", "depense", "differe", "donnees", "effectuer", "endettement", "epargne", "epargner", "erreur", "especes", "etranger", "euro", "faire", "fais", "fixe", "fois", "fonctionne", "gamme", "garantie", "haut", "hors", "immediat", "information", "infos", "interets", "internet", "joint", "ligne", "liquide", "lire", "livret", "luxe", "marche", "moyen", "negation", "net", "nouveau", "obtenir", "offre", "opposition", "opter", "où", "paiement", "passe", "payer", "perp", "personnel", "personnelle", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisée", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
+	 private static String[] array = { "PEL", "PTZ", "TEG", "tiers", "tous_risques", "achat", "achats", "achete", "acheter", "acquerir", "adherer", "aide", "annuler", "apport", "argent", "article", "assistance", "assurance", "assurer", "auto", "autorisation", "avantages", "avoir", "bancaire", "banque", "beneficier", "bleue", "bon", "carte", "choisir", "code", "combien", "commencer", "comment", "commercant", "complementaire", "compte", "conducteur", "confidentiel", "connaitre", "conseil", "consulter", "contrat", "coute", "credit", "debit", "debiter", "declarer", "demarche", "depense", "differe", "donnees", "effectuer", "endettement", "epargne", "epargner", "erreur", "especes", "etranger", "euro", "faire", "fais", "fixe", "fois", "fonctionne", "gamme", "garantie", "haut", "hors", "immediat", "information", "infos", "interets", "internet", "joint", "ligne", "liquide", "lire", "livret", "luxe", "marche", "moyen", "negation", "net", "nouveau", "obtenir", "offre", "opposition", "opter", "où", "paiement", "passe", "payer", "perp", "personnel", "personnelle", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi","qu’est-ce", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisée", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
 	 private static List<String> Refwords = new ArrayList<>(Arrays.asList(array)); 
+	 
 	 
 	 /*{{
 "etranger"    ,"ouvrir"    ,"perd"    ,"livret"    ,"information"    ,"infos"    ,"renseignement"    ,"details"    ,"PEL"    ,"pret"    ,"interet"    ,         "principe"    ,         "logement"    ,         "financer"    ,         "association"    , "probleme"    ,         "souci"    ,         "aide"    ,         "epargne"    ,         "biens"    ,         "telephone"    ,         "payer"    ,         "retrait"    ,         "especes"    ,         "cheque"    ,         "projet"    ,         "nouveau"    ,         "etude"    ,         "conseiller"    ,         "appartement"    ,         "banque"    ,         "paylib"    ,         "carte"    ,
@@ -109,7 +110,6 @@ public class wordRecognition {
 	
 	
 	
-	
 	public static void main(String[] args) { //juste une function apres
 		//StringTokenizer phrase = new StringTokenizer("J'ai perdu ma carte à l'etranger. Y a t il une demarche particuliere pour ce probleme ? Comment ouvrir un Livret Épargne Orange ?",".");
 	   
@@ -117,7 +117,7 @@ public class wordRecognition {
 	    		"qu'est-ce que la dispense d'accompte et comment la demander ? "+ 
 	    		"quels sont les avantages du paiement par paylib ?" + 
 	    		"comment augmenter votre decouvert autorise ?" + 
-	    		"comment fonctionnent les alertes premiere operation a l'etranger ?");
+	    		"comment fonctionnent les alertes premiere operation a l' etranger ?");
 		
 	}
 }
