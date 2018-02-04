@@ -31,7 +31,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:background="@color/colorDoYouKnow"
-        android:text="Votre e-mail ..."
+        android:hint="Votre e-mail ..."
+        android:id="@+id/mailText"
         />
 
     <TextView
@@ -50,8 +51,9 @@
         android:layout_marginTop="280dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:text="Votre nom et prenom ..."
+        android:hint="Votre nom et prenom ..."
         android:background="@color/colorDoYouKnow"
+        android:id="@+id/nameText"
         />
 
     <TextView
@@ -70,8 +72,9 @@
         android:layout_marginTop="370dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:text="Votre telephone ..."
+        android:hint="Votre telphone ..."
         android:background="@color/colorDoYouKnow"
+        android:id="@+id/phoneText"
         />
 
     <Button
