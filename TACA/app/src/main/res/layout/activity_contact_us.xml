@@ -32,6 +32,7 @@
         android:layout_marginRight="5dp"
         android:background="@color/colorDoYouKnow"
         android:text="Votre e-mail ..."
+        android:id="@+id/mailText"
         />
 
     <TextView
@@ -52,6 +53,7 @@
         android:layout_marginRight="5dp"
         android:text="Votre nom et prenom ..."
         android:background="@color/colorDoYouKnow"
+        android:id="@+id/nameText"
         />
 
     <TextView
@@ -72,6 +74,7 @@
         android:layout_marginRight="5dp"
         android:text="Votre telephone ..."
         android:background="@color/colorDoYouKnow"
+        android:id="@+id/phoneText"
         />
 
     <Button
