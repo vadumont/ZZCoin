@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -26,14 +27,14 @@ import javax.script.SimpleScriptContext;
 public class wordRecognition {
 
 	 private static String[] array = { "PEL", "PTZ", "TEG", "tiers", "tous_risques", "achats", "achete", "acheter", "acquerir", "adherer", "aide", "annuler", "apport", "argent", "article", "assistance", "assurance", "assurer", "auto", "autorisation", "avantages", "avoir", "bancaire", "banque", "beneficier", "bleue", "bon", "carte", "choisir", "code", "combien", "commencer", "comment", "commercant", "complementaire", "compte", "conducteur", "confidentiel", "connaitre", "conseil", "consulter", "contrat", "coute", "credit", "debit", "debiter", "declarer", "demarche", "depense", "differe", "donnees",
-			 "effectuer", "endettement", "epargne", "epargner", "erreur", "especes", "etranger", "euro", "faire", "fais", "fixe", "fois", "fonctionne", "gamme", "garantie", "haut", "hors", "immediat", "information", "infos", "interets", "internet", "joint", "ligne", "liquide", "lire", "livret", "luxe", "marche", "moyen", "negation", "net", "nouveau", "obtenir", "offre", "opposition", "opter", "où",
-			 "paiement", "passe", "payer", "perp", "personnel", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi","qu’est-ce", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisée", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
+			 "effectuer", "endettement", "epargne", "epargner", "erreur", "especes", "etranger", "euro", "faire", "fais", "fixe", "fois", "fonctionne", "gamme", "garantie", "haut", "hors", "immediat", "information", "infos", "interets", "internet", "joint", "ligne", "liquide", "lire", "livret", "luxe", "marche", "moyen", "negation", "net", "nouveau", "obtenir", "offre", "opposition", "opter", "oï¿½",
+			 "paiement", "passe", "payer", "perp", "personnel", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi","quï¿½est-ce", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisï¿½e", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
 	 private static List<String> Refwords = new ArrayList<>(Arrays.asList(array)); 
 	 
 	 
 	 /*{{
-"etranger"    ,"ouvrir"    ,"perd"    ,"livret"    ,"information"    ,"infos"    ,"renseignement"    ,"details"    ,"PEL"    ,"pret"    ,"interet"    ,         "principe"    ,         "logement"    ,         "financer"    ,         "association"    , "probleme"    ,         "souci"    ,         "aide"    ,         "epargne"    ,         "biens"    ,         "telephone"    ,         "payer"    ,         "retrait"    ,         "especes"    ,         "cheque"    ,         "projet"    ,         "nouveau"    ,         "etude"    ,         "conseiller"    ,         "appartement"    ,         "banque"    ,         "paylib"    ,         "carte"    ,
-"emprunt"    ,"voyage"    ,         "assurance"    ,         "agence"    ,         "automate"    ,         "distributeur"    ,         "deposer"    ,         "proche"    ,         "compte"    ,         "partir"    ,         "demarrer"    ,         "lancer"    ,         "trouver"    ,         "stage"    ,         "job"    ,         "acheter"    ,         "voiture"    ,         "assurer"    ,         "maison"    ,         "retirer"    ,         "argent"    ,
+"etranger" ï¿½ï¿½ï¿½,"ouvrir" ï¿½ï¿½ï¿½,"perd" ï¿½ï¿½ï¿½,"livret" ï¿½ï¿½ï¿½,"information" ï¿½ï¿½ï¿½,"infos" ï¿½ï¿½ï¿½,"renseignement" ï¿½ï¿½ï¿½,"details" ï¿½ï¿½ï¿½,"PEL" ï¿½ï¿½ï¿½,"pret" ï¿½ï¿½ï¿½,"interet" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"principe" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"logement" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"financer" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"association" ï¿½ï¿½ï¿½, "probleme" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"souci" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"aide" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"epargne" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"biens" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"telephone" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"payer" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"retrait" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"especes" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"cheque" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"projet" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"nouveau" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"etude" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"conseiller" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"appartement" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"banque" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"paylib" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"carte" ï¿½ï¿½ï¿½,
+"emprunt" ï¿½ï¿½ï¿½,"voyage" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"assurance" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"agence" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"automate" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"distributeur" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"deposer" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"proche" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"compte" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"partir" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"demarrer" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"lancer" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"trouver" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"stage" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"job" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"acheter" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"voiture" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"assurer" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"maison" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"retirer" ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½"argent" ï¿½ï¿½ï¿½,
  }};*/
 	
 	 
@@ -49,14 +50,14 @@ public class wordRecognition {
 	static boolean matching(String modele, String strAComparer, int nbErreursPermis) // a ameliorer
 	{
 		int nbErreursTrouves = 0;
-		//On teste s'il y a une différence de taille des 2 chaines, 
-		//un caractère de plus ou de moins est une erreur
+		//On teste s'il y a une diffï¿½rence de taille des 2 chaines, 
+		//un caractï¿½re de plus ou de moins est une erreur
 		int diffTailleChaines = modele.length() - strAComparer.length();
 		nbErreursTrouves += Math.abs(diffTailleChaines);
 		if (nbErreursTrouves > nbErreursPermis)
 			return false;
-		//La différence de taille n'est pas supérieur au nombre d'erreurs permis, 
-		//on compare les chaines caractère par caractère
+		//La diffï¿½rence de taille n'est pas supï¿½rieur au nombre d'erreurs permis, 
+		//on compare les chaines caractï¿½re par caractï¿½re
 			int longueur = Math.min(modele.length(),strAComparer.length());
 			if (longueur <= 3) {
 				for (int i = 0; i < longueur; i++)
@@ -95,7 +96,7 @@ public class wordRecognition {
 	}
 	
 	
-	public static Vector<String> Highlight(String text) {
+	public static Vector<String> Highlight(String text) throws InterruptedException {
 		int i=0;
 		int c=0;
 		String textChain="";
@@ -118,12 +119,23 @@ public class wordRecognition {
 	        		 
 	         	 }
 	        	 System.out.println(textChain);
-	        	 String[] textRetour = {"python", "D:\\cyprien\\ZZCoin\\Python\\RdN.py", textChain};
+
 
 				try {
-					final Process p = Runtime.getRuntime().exec(textRetour);
+	
+				        Process p;
+				        p = Runtime.getRuntime().exec("./RdN.py " + textChain);
+				        p.waitFor();
 
-					try(BufferedReader br = new BufferedReader(new FileReader("D:\\cyprien\\ZZCoin\\Python\\resultat.txt"))) {
+				        BufferedReader reader =
+				             new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+				        String line2 = "";
+				        while ((line2 = reader.readLine())!= null) {
+				        	System.out.println(line2 + "\n");
+				        }
+
+					try(BufferedReader br = new BufferedReader(new FileReader("resultat.txt"))) {
 					    StringBuilder sb = new StringBuilder();
 					    String line = br.readLine();
 
@@ -149,10 +161,10 @@ public class wordRecognition {
 	}
 	
 	
-	public static void main(String[] args) { //juste une function apres
-		//StringTokenizer phrase = new StringTokenizer("J'ai perdu ma carte à l'etranger. Y a t il une demarche particuliere pour ce probleme ? Comment ouvrir un Livret Épargne Orange ?",".");
+	public static void main(String[] args) throws InterruptedException { //juste une function apres
+		//StringTokenizer phrase = new StringTokenizer("J'ai perdu ma carte ï¿½ l'etranger. Y a t il une demarche particuliere pour ce probleme ? Comment ouvrir un Livret ï¿½pargne Orange ?",".");
 	   
-	    Highlight("comment assurer un nouveau vehicule ?");  
+	    Highlight("comment securiser mes achats sur internet ?");  
 	    		/*" "+ 
 	    		"" + 
 	    		"c'est quoi un apport personnel ?" */
