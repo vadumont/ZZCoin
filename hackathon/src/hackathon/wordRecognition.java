@@ -1,21 +1,33 @@
 package hackathon;
 
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
+import javax.script.ScriptContext;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import javax.script.SimpleScriptContext;
+
 public class wordRecognition {
 
-	 private static String[] array = { "PEL", "PTZ", "TEG", "tiers", "tous_risques", "achat", "achats", "achete", "acheter", "acquerir", "adherer", "aide", "annuler", "apport", "argent", "article", "assistance", "assurance", "assurer", "auto", "autorisation", "avantages", "avoir", "bancaire", "banque", "beneficier", "bleue", "bon", "carte", "choisir", "code", "combien", "commencer", "comment", "commercant", "complementaire", "compte", "conducteur", "confidentiel", "connaitre", "conseil", "consulter", "contrat", "coute", "credit", "debit", "debiter", "declarer", "demarche", "depense", "differe", "donnees",
+	 private static String[] array = { "PEL", "PTZ", "TEG", "tiers", "tous_risques", "achats", "achete", "acheter", "acquerir", "adherer", "aide", "annuler", "apport", "argent", "article", "assistance", "assurance", "assurer", "auto", "autorisation", "avantages", "avoir", "bancaire", "banque", "beneficier", "bleue", "bon", "carte", "choisir", "code", "combien", "commencer", "comment", "commercant", "complementaire", "compte", "conducteur", "confidentiel", "connaitre", "conseil", "consulter", "contrat", "coute", "credit", "debit", "debiter", "declarer", "demarche", "depense", "differe", "donnees",
 			 "effectuer", "endettement", "epargne", "epargner", "erreur", "especes", "etranger", "euro", "faire", "fais", "fixe", "fois", "fonctionne", "gamme", "garantie", "haut", "hors", "immediat", "information", "infos", "interets", "internet", "joint", "ligne", "liquide", "lire", "livret", "luxe", "marche", "moyen", "negation", "net", "nouveau", "obtenir", "offre", "opposition", "opter", "où",
-			 "paiement", "passe", "payer", "perp", "personnel", "personnelle", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi","qu’est-ce", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisée", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
+			 "paiement", "passe", "payer", "perp", "personnel", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi","qu’est-ce", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisée", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
 	 private static List<String> Refwords = new ArrayList<>(Arrays.asList(array)); 
 	 
 	 
@@ -115,24 +127,26 @@ public class wordRecognition {
 
 				try {
 					final Process p = Runtime.getRuntime().exec(textRetour);
-				
-	        	
 
-	        	 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
-	        	 writer.write("password");
-	             writer.newLine();
-	        	 writer.close();
-	        	 BufferedWriter out = new BufferedWriter(new BufferedWriter(new FileWriter("1")));
-	        	 System.out.println(out);
-	        	 System.out.println(out.toString());
-	        	 System.out.println(writer);
-	        	 
+					try(BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+					    StringBuilder sb = new StringBuilder();
+					    String line = br.readLine();
+
+					    while (line != null) {
+					        sb.append(line);
+					        sb.append(System.lineSeparator());
+					        line = br.readLine();
+					    }
+					    String everything = sb.toString();
+					    System.out.println(everything);
+					}
+
 	        	 
 	        	 
 	        	 } catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				} 								
 	        	 
 		     }
 	    }
@@ -144,10 +158,9 @@ public class wordRecognition {
 		//StringTokenizer phrase = new StringTokenizer("J'ai perdu ma carte à l'etranger. Y a t il une demarche particuliere pour ce probleme ? Comment ouvrir un Livret Épargne Orange ?",".");
 	   
 	    Highlight("comment faire opposition a ma carte bancaire ?" + 
-	    		"qu'est-ce que la dispense d'accompte et comment la demander ? "+ 
-	    		"quels sont les avantages du paiement par paylib ?" + 
-	    		"comment augmenter votre decouvert autorise ?" + 
-	    		"comment fonctionnent les alertes premiere operation a l' etranger ?");
-		
+	    		"comment securiser mes achats sur internet ? "+ 
+	    		"comment assurer un nouveau vehicule ?" + 
+	    		"c'est quoi un apport personnel ?" );
+	    		
 	}
 }
