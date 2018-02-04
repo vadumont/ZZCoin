@@ -1,6 +1,10 @@
 package hackathon;
 
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +13,9 @@ import java.util.Vector;
 
 public class wordRecognition {
 
-	 private static String[] array = { "PEL", "PTZ", "TEG", "tiers", "tous_risques", "achat", "achats", "achete", "acheter", "acquerir", "adherer", "aide", "annuler", "apport", "argent", "article", "assistance", "assurance", "assurer", "auto", "autorisation", "avantages", "avoir", "bancaire", "banque", "beneficier", "bleue", "bon", "carte", "choisir", "code", "combien", "commencer", "comment", "commercant", "complementaire", "compte", "conducteur", "confidentiel", "connaitre", "conseil", "consulter", "contrat", "coute", "credit", "debit", "debiter", "declarer", "demarche", "depense", "differe", "donnees", "effectuer", "endettement", "epargne", "epargner", "erreur", "especes", "etranger", "euro", "faire", "fais", "fixe", "fois", "fonctionne", "gamme", "garantie", "haut", "hors", "immediat", "information", "infos", "interets", "internet", "joint", "ligne", "liquide", "lire", "livret", "luxe", "marche", "moyen", "negation", "net", "nouveau", "obtenir", "offre", "opposition", "opter", "où", "paiement", "passe", "payer", "perp", "personnel", "personnelle", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi","qu’est-ce", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisée", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
+	 private static String[] array = { "PEL", "PTZ", "TEG", "tiers", "tous_risques", "achat", "achats", "achete", "acheter", "acquerir", "adherer", "aide", "annuler", "apport", "argent", "article", "assistance", "assurance", "assurer", "auto", "autorisation", "avantages", "avoir", "bancaire", "banque", "beneficier", "bleue", "bon", "carte", "choisir", "code", "combien", "commencer", "comment", "commercant", "complementaire", "compte", "conducteur", "confidentiel", "connaitre", "conseil", "consulter", "contrat", "coute", "credit", "debit", "debiter", "declarer", "demarche", "depense", "differe", "donnees",
+			 "effectuer", "endettement", "epargne", "epargner", "erreur", "especes", "etranger", "euro", "faire", "fais", "fixe", "fois", "fonctionne", "gamme", "garantie", "haut", "hors", "immediat", "information", "infos", "interets", "internet", "joint", "ligne", "liquide", "lire", "livret", "luxe", "marche", "moyen", "negation", "net", "nouveau", "obtenir", "offre", "opposition", "opter", "où",
+			 "paiement", "passe", "payer", "perp", "personnel", "personnelle", "perte", "placement", "plafond", "plusieurs", "portable", "posseder", "possibilite", "possible", "pourquoi", "pouvoir", "pret", "prix", "probleme", "profiter", "proteger", "quand", "que", "quel", "quoi","qu’est-ce", "reagir", "regler", "retirer", "retourner", "retrait", "sante", "securiser", "securisée", "servir", "sinistre", "souscrire", "suivre", "surement", "systematique", "tarification", "tarifs", "taux", "telephone", "utilisation", "utiliser", "vehicule", "vie", "virement", "vol", "vouloir", "zero", "zone"};
 	 private static List<String> Refwords = new ArrayList<>(Arrays.asList(array)); 
 	 
 	 
@@ -77,11 +83,10 @@ public class wordRecognition {
 	}
 	
 	
-	
-	
 	public static Vector<Vector<String>> Highlight(String text) {
 		int i=0;
 		int c=0;
+		String textChain="";
 		//System.out.println("hello");
 		Vector<String> list1 = new Vector<String>();
 		Vector<String> list2 = new Vector<String>();
@@ -99,15 +104,40 @@ public class wordRecognition {
 	        		 checkWord(mot.nextToken(),currentList);
 	        	 }
 	        	 System.out.println("Phrase"+i++);
-	        	
+	        	 textChain="";
 	        	 for (String item : currentList) {
-	        		 System.out.println(item);
+	        		 
+	        		 textChain=textChain+item+" ";
+	        		 
 	         	 }
+	        	 System.out.println(textChain);
+	        	 String[] textRetour = {"cmd.exe", "D:\\cyprien\\ZZCoin\\Python\\RdN.py", textChain};
+
+				try {
+					final Process p = Runtime.getRuntime().exec(textRetour);
+				
+	        	
+
+	        	 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
+	        	 writer.write("password");
+	             writer.newLine();
+	        	 writer.close();
+	        	 BufferedWriter out = new BufferedWriter(new BufferedWriter(new FileWriter("1")));
+	        	 System.out.println(out);
+	        	 System.out.println(out.toString());
+	        	 System.out.println(writer);
+	        	 
+	        	 
+	        	 
+	        	 } catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        	 
 		     }
 	    }
 	    return Keywords;
 	}
-	
 	
 	
 	public static void main(String[] args) { //juste une function apres
